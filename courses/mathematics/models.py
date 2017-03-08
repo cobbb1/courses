@@ -49,7 +49,7 @@ class Question(models.Model):
         (1,"easy"),
         (2,"not very easy"),
         (3,"medium"),
-        (4,"little difficult"),
+        (4,"a little difficult"),
         (5,"difficult")
     )
     difficulty = models.FloatField(choices = difficultchoice)
