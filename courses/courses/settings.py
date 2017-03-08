@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'USER':'root',
         'PASSWORD':'root',
-        'NAME': os.path.join(BASE_DIR, 'db.mysql'),
+        'NAME': 'course',
     }
 }
 
