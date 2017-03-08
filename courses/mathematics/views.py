@@ -10,7 +10,7 @@ def index(request):
     return render(request, 'myserver/testMarkdown.html',None)
 
 import json
-from courses.models import Question
+from .models import Question
 def get(request):
     response_data = {}
     # response_data['test'] = "# Marked in browser\n\nRendered by **marked**. $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$"
