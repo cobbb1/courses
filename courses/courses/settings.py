@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ['163.44.168.87']
 
 INSTALLED_APPS = [
     'mathematics.apps.MathematicsConfig',
-    'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
