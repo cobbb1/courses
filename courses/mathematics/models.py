@@ -7,6 +7,12 @@ from django.db import models
 
 class Question(models.Model):
     code = models.CharField(max_length=100,primary_key=True)
+    categorychoice = (
+        (1,"exercies"),
+        (2,"example"),
+        (3,"diy")
+    )
+    category = models.IntegerField(choices=categorychoice)
     problem = models.TextField()
     problempicture1 = models.ImageField(blank=True,null=True,upload_to="theall/image/")
     problempicture2 = models.ImageField(blank=True,null=True,upload_to="theall/image/")
@@ -35,6 +41,9 @@ class Question(models.Model):
         ("F","F")
     )
     answer = models.CharField(choices=answerchoice,max_length=200)
+    solutionspicture1 = models.ImageField(null=True,blank=True,upload_to="theall/image")
+    solutionspicture2 = models.ImageField(null=True,blank=True,upload_to="theall/image")
+    solutionspicture3 = models.ImageField(null=True,blank=True,upload_to="theall/image")
     solutions = models.TextField()
     linkneuron = models.FloatField(blank=True,null=True)
     linkability = models.FloatField(blank=True,null=True)
