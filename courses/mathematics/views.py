@@ -7,7 +7,7 @@ def index(request):
     # mytemplate = loader.get_template('myserver/testMarkdown.html')
     # return HttpResponse(mytemplate)
     # why the above do not work??????
-    return render(request, 'myserver/testMarkdown.html',None)
+    return render(request, 'mathematics/testMarkdown.html',None)
 
 import json
 from .models import Question
