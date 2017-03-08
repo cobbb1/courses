@@ -33,10 +33,17 @@ MathJax.Hub.Config({
              success:function(data)
               {
 {#               alert(data);#}
-                  markdownText = data['test'];
+                  markdownText = data['field'];
                   console.log("in ajax: "+markdownText);
 {#                  document.getElementById('content').innerHTML = marked(markdownText);#}
-                  document.getElementById('content').innerHTML = markdownText;
+                  document.getElementById('problem').innerHtml = markdownText["problem"];
+                  document.getElementById('choice').innerHtml = markdownText["choicea"];
+                  document.getElementById('answer').innerHtml = markdownText["answer"];
+                  document.getElementById('difficulty').innerHtml = markdownText["difficulty"];
+                  document.getElementById('alternativesolutions').innerHTML = markdownText["alternativesolutions"];
+                  document.getElementById('solutions').innerHTML = markdownText["solutions"];
+                  document.getElementById('sensitivity').innerHTML = markdownText["sensitivity"];
+
               },
              error:function(data)
              {
@@ -55,7 +62,13 @@ MathJax.Hub.Config({
 	  <title>Marked in the browser</title>
 	</head>
 	<body>
-	  <div id="content"></div>
+	  <div id="problems"></div>
+      <div id="answer"></div>
+      <div id="choice"></div>
+      <div id="difficulty"></div>
+      <div id="alternativesolutions"></div>
+      <div id="solutions"></div>
+      <div id="sensitivity"></div>
 	  <!--$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$ <!-- don't need to add additional '\' -->
   </body>
 </html>
