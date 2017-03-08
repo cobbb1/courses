@@ -32,8 +32,8 @@ MathJax.Hub.Config({
              dataType:'json',
              success:function(data)
               {
-{#               alert(data);#}
-                  markdownText = data[0]['field'];
+                  alert(data);
+                  markdownText = data[0]['fields'];
                   console.log("in ajax: "+markdownText);
 {#                  document.getElementById('content').innerHTML = marked(markdownText);#}
                   document.getElementById('problem').innerHtml = markdownText["problem"];
