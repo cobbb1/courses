@@ -26,7 +26,15 @@ class Question(models.Model):
     choicepictured = models.ImageField(blank=True,null=True,upload_to="image/")
     choicepicturee = models.ImageField(blank=True,null=True,upload_to="image/")
     choicepicturef = models.ImageField(blank=True,null=True,upload_to="image/")
-    answer = models.TextField()
+    answerchoice = (
+        ("A","A"),
+        ("B","B"),
+        ("C","C"),
+        ("D","D"),
+        ("E","E"),
+        ("F","F")
+    )
+    answer = models.CharField(choices=answerchoice,max_length=200)
     solutions = models.TextField()
     linkneuron = models.FloatField(blank=True,null=True)
     linkability = models.FloatField(blank=True,null=True)
@@ -37,5 +45,12 @@ class Question(models.Model):
     messagesuccess = models.TextField(blank=True,null=True)
     sensitivity = models.FloatField(blank=True,null=True)
     gussingparameter = models.FloatField(blank=True,null=True)
-    difficulty = models.FloatField()
+    difficultchoice = (
+        (1,"easy"),
+        (2,"not very easy"),
+        (3,"medium"),
+        (4,"little difficult"),
+        (5,"difficult")
+    )
+    difficulty = models.FloatField(choices = difficultchoice)
     twinproblems = models.ManyToManyField("self",blank=True,null=True)
