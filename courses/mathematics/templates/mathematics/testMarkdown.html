@@ -36,7 +36,7 @@ MathJax.Hub.Config({
                   markdownText = data[0]['fields'];
                   console.log("in ajax: "+markdownText);
 {#                  document.getElementById('content').innerHTML = marked(markdownText);#}
-                  document.getElementById('problem').innerHTML = markdownText["problem"];
+                  document.getElementById('problem').innerHTML = marked(markdownText["problem"]);
                   document.getElementById('choice').innerHTML = markdownText["choicea"];
                   document.getElementById('answer').innerHTML = markdownText["answer"];
                   document.getElementById('difficulty').innerHTLM = markdownText["difficulty"];
