@@ -14,7 +14,7 @@ from .models import Question
 def get(request,code):
     response_data = {}
     # response_data['test'] = "# Marked in browser\n\nRendered by **marked**. $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$"
-    response_data['test'] = Question.objects.get(code=code)
-    print(response_data['test'])
+    response_data= Question.objects.get(code=code)
+    print(response_data)
     return HttpResponse(json.dumps(response_data), content_type="application/jason")
    # return "# Marked in browser\n\nRendered by **marked**. $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$"
