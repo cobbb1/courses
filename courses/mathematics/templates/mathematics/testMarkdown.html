@@ -32,14 +32,14 @@ MathJax.Hub.Config({
              dataType:'json',
              success:function(data)
               {
-                  alert(data);
+
                   markdownText = data[0]['fields'];
                   console.log("in ajax: "+markdownText);
 {#                  document.getElementById('content').innerHTML = marked(markdownText);#}
-                  document.getElementById('problem').innerHtml = markdownText["problem"];
-                  document.getElementById('choice').innerHtml = markdownText["choicea"];
-                  document.getElementById('answer').innerHtml = markdownText["answer"];
-                  document.getElementById('difficulty').innerHtml = markdownText["difficulty"];
+                  document.getElementById('problem').innerHTML = markdownText["problem"];
+                  document.getElementById('choice').innerHTML = markdownText["choicea"];
+                  document.getElementById('answer').innerHTML = markdownText["answer"];
+                  document.getElementById('difficulty').innerHTLM = markdownText["difficulty"];
                   document.getElementById('alternativesolutions').innerHTML = markdownText["alternativesolutions"];
                   document.getElementById('solutions').innerHTML = markdownText["solutions"];
                   document.getElementById('sensitivity').innerHTML = markdownText["sensitivity"];
