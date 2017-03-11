@@ -63,3 +63,5 @@ class Question(models.Model):
     )
     difficulty = models.FloatField(choices = difficultchoice)
     twinproblems = models.ManyToManyField("self",blank=True,null=True)
+    def __unicode__(self):
+        return self.code
