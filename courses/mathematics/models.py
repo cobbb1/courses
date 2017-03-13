@@ -64,4 +64,6 @@ class Question(models.Model):
     difficulty = models.FloatField(choices = difficultchoice)
     twinproblems = models.ManyToManyField("self",blank=True,null=True)
     def __unicode__(self):
-        return self.code
+        # print (self.category)
+        # print(self.categorychoice[self.category])
+        return self.categorychoice[self.category-1][1]+self.code #tuple inside tuples
