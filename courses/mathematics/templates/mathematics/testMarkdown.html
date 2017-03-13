@@ -70,7 +70,13 @@ MathJax.Hub.Config({
                       console.log("in ajax: "+latexText);
                       document.getElementById('problem').innerHTML = latexText["problem"];
                       console.log(latexText["problem"]);
-                      document.getElementById('choice').innerHTML = latexText["choicea"];
+                      document.getElementById('choicesa').innerHTML = latexText["choicesa"];
+                      document.getElementById('choicesb').innerHTML = latexText["choicesb"];
+                      document.getElementById('choicesc').innerHTML = latexText["choicesc"];
+                      document.getElementById('choicesd').innerHTML = latexText["choicesd"];
+                      document.getElementById('choicese').innerHTML = latexText["choicese"];
+                      document.getElementById('choicesf').innerHTML = latexText["choicesf"];
+
                       document.getElementById('answer').innerHTML = latexText["answer"];
                       document.getElementById('difficulty').innerHTLM = latexText["difficulty"];
                       document.getElementById('alternativesolutions').innerHTML = latexText["alternativesolutions"];
@@ -110,7 +116,12 @@ MathJax.Hub.Config({
       <div id="answer"></div>
     <hr width=100% size=1 color=#bbbcbc style="FILTER: alpha(opacity=100,finishopacity=0)">
     choice:
-      <div id="choice"></div>
+      <div id="choicesa"></div>
+    <div id="choicesb"></div>
+    <div id="choicesc"></div>
+    <div id="choicesd"></div>
+    <div id="choicese"></div>
+    <div id="choicesf"></div>
     <hr width=100% size=1 color=#bbbcbc style="FILTER: alpha(opacity=100,finishopacity=0)">
     difficulty:
       <div id="difficulty"></div>
