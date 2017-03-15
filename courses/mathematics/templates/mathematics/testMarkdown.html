@@ -68,16 +68,20 @@ MathJax.Hub.Config({
                   {
                       latexText = data[0]['fields'];
                       console.log("in ajax: "+latexText);
-                      document.getElementById('problem').innerHTML = latexText["problem"];
+                      document.getElementById('problem').innerHTML = latexText["problem"]+"<img src=\"/"+latexText["problempicture1"]+"\">"
+                      +"<img src=\"/"+latexText["problempicture2"]+"\">"+"<img src=\"/"+latexText["problempicture3"]+"\">"+"<img src=\"/"+latexText["problempicture4"]+"\">"
+                      +"<img src=\"/"+latexText["problempicture5"]+"\">"+"<img src=\"/"+latexText["problempicture6"]+"\">";
                       console.log(latexText["problem"]);
-                      document.getElementById('choicesa').innerHTML = latexText["choicesa"];
-                      document.getElementById('choicesb').innerHTML = latexText["choicesb"];
-                      document.getElementById('choicesc').innerHTML = latexText["choicesc"];
-                      document.getElementById('choicesd').innerHTML = latexText["choicesd"];
-                      document.getElementById('choicese').innerHTML = latexText["choicese"];
-                      document.getElementById('choicesf').innerHTML = latexText["choicesf"];
+                      document.getElementById('choicesa').innerHTML = latexText["choicesa"]+"<img src=\"/"+latexText["choicepicturea"]+"\" />";
+                      document.getElementById('choicesb').innerHTML = latexText["choicesb"]+"<img src=\"/"+latexText["choicepictureb"]+"\" />";
+                      document.getElementById('choicesc').innerHTML = latexText["choicesc"]+"<img src=\"/"+latexText["choicepicturec"]+"\" />";
+                      document.getElementById('choicesd').innerHTML = latexText["choicesd"]+"<img src=\"/"+latexText["choicepictured"]+"\" />";
+                      document.getElementById('choicese').innerHTML = latexText["choicese"]+"<img src=\"/"+latexText["choicepicturee"]+"\" />";
+                      document.getElementById('choicesf').innerHTML = latexText["choicesf"]+"<img src=\"/"+latexText["choicepicturef"]+"\" />";
 
-                      document.getElementById('answer').innerHTML = latexText["answer"];
+                      document.getElementById('answer').innerHTML = latexText["answer"]+"<img src=\"/"+latexText["solutionpicture1"]+"\">"
+                      +"<img src=\"/"+latexText["solutionpicture2"]+"\">"
+                      +"<img src=\"/"+latexText["solutionpicture3"]+"\">";
                       document.getElementById('difficulty').innerHTLM = latexText["difficulty"];
                       document.getElementById('alternativesolutions').innerHTML = latexText["alternativesolutions"];
                       document.getElementById('solutions').innerHTML = latexText["solutions"];
