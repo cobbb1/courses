@@ -17,8 +17,8 @@ class Neuron(models.Model):
 
 
 class Question(models.Model):
-    id = models.AutoField(primary_key=True)
-    code = models.CharField(max_length=100)
+    id = models.CharField(max_length=200)
+    code = models.CharField(max_length=100,primary_key=True)
     categorychoice = (
         (1,"Expl"),
         (2,"Exer"),
@@ -58,7 +58,7 @@ class Question(models.Model):
     solutionspicture2 = models.ImageField(null=True,blank=True,upload_to="theall/image")
     solutionspicture3 = models.ImageField(null=True,blank=True,upload_to="theall/image")
     solutions = models.TextField()
-    linkneuron = models.ManyToManyField(Neuron,blank=True)
+
     linkability1 = models.FloatField(null=True,blank=True)
     linkability2 = models.FloatField(null=True,blank=True)
     linkability3 = models.FloatField(null=True,blank=True)
@@ -80,9 +80,7 @@ class Question(models.Model):
         (5,"difficult")
     )
     difficulty = models.IntegerField(choices = difficultchoice)
-    rightproblems = models.ManyToManyField("self",blank=True)
-    wrongproblems = models.ManyToManyField("self",blank=True)
-    twinproblems = models.ManyToManyField("self",blank=True)
+
     def __unicode__(self):
         # print (self.category)
         # print(self.categorychoice[self.category])
