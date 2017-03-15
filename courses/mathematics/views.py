@@ -9,9 +9,19 @@ def index(request):
     # why the above do not work??????
     return render(request, 'mathematics/testMarkdown.html',None)
 
+def indexz(request):
+    # mytemplate = loader.get_template('myserver/testMarkdown.html')
+    # return HttpResponse(mytemplate)
+    # why the above do not work??????
+    return render(request, 'mathematics/neuron.html',None)
+
 import json
 from django.core import serializers
-from .models import Question
+from .models import Question,Neuron
+
+
+
+
 def get(request,code):
     response_data = {}
     # response_data['test'] = "# Marked in browser\n\nRendered by **marked**. $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$"
@@ -19,7 +29,18 @@ def get(request,code):
     print(response_data)
     print("*********************")
     return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
-   # return "# Marked in browser\n\nRendered by **marked**. $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$"
+
+def getneuron(request):
+    print("===================")
+    ti = request.GET.get('title')
+    print("--------------------")
+    print(type(ti))
+    response_data= Neuron.objects.filter(title=ti)
+    #print(response_data)
+    #print(serializers.serialize("json",response_data))
+    return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
+
+
 
 def preview(request):
     print("===================")
@@ -32,3 +53,4 @@ def preview(request):
     #print(response_data)
     #print(serializers.serialize("json",response_data))
     return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
+
