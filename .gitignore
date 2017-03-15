@@ -52,7 +52,7 @@ Temporary Items
 .apdisk
 
 
-courses/theall
+courses/theall/*
 courses/mathematics/migrations/*
 .idea/workspace.xml
 .idea/workspace.xml
