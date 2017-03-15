@@ -7,5 +7,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$' , views.index, name="zc"),
-    url(r'^(?P<code>.+)$', views.get, name='index'),
+    url(r'^preview$',views.preview, name='preview'),
+    url(r'^(?P<code>.+)$', views.get, name='index')
+
 ]
