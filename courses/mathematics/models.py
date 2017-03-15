@@ -17,7 +17,6 @@ class Neuron(models.Model):
 
 
 class Question(models.Model):
-    id = models.AutoField(primary_key=100)
     code = models.CharField(max_length=100)
     categorychoice = (
         (1,"Expl"),
