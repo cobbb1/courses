@@ -16,6 +16,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.pyc
 
 # =========================
 # Operating System Files
@@ -52,3 +53,5 @@ courses/mathematics/migrations/*
 .idea/workspace.xml
 .idea/workspace.xml
 .idea/workspace.xml
+courses/courses/settings.py
+courses/courses/settings.py
