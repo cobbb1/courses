@@ -4,6 +4,17 @@ from django.db import models
 
 # Create your models here.
 
+class Neuron(models.Model):
+    def __str__(self):
+        return self.title
+    title = models.CharField(max_length=200)
+    category = (
+        (1,"1"),
+        (2,"2"),
+        (3,"3")
+    )
+    detail = models.TextField()
+
 
 class Question(models.Model):
     code = models.CharField(max_length=100,primary_key=True)
@@ -46,8 +57,13 @@ class Question(models.Model):
     solutionspicture2 = models.ImageField(null=True,blank=True,upload_to="theall/image")
     solutionspicture3 = models.ImageField(null=True,blank=True,upload_to="theall/image")
     solutions = models.TextField()
-    linkneuron = models.FloatField(blank=True,null=True)
-    linkability = models.FloatField(blank=True,null=True)
+    linkneuron = models.ManyToManyField(Neuron)
+    linkability1 = models.FloatField(null=True,blank=True)
+    linkability2 = models.FloatField(null=True,blank=True)
+    linkability3 = models.FloatField(null=True,blank=True)
+    linkability4 = models.FloatField(null=True,blank=True)
+    linkability5 = models.FloatField(null=True,blank=True)
+    linkability6 = models.FloatField(null=True,blank=True)
     linkpersonaility = models.FloatField(blank=True,null=True)
     errors = models.TextField(blank=True,null=True)
     alternativesolutions = models.TextField(blank=True,null=True)
@@ -62,8 +78,10 @@ class Question(models.Model):
         (4,"a little difficult"),
         (5,"difficult")
     )
-    difficulty = models.FloatField(choices = difficultchoice)
-    twinproblems = models.ManyToManyField("self",blank=True,null=True)
+    difficulty = models.IntegerField(choices = difficultchoice)
+    rightproblems = models.ManyToManyField("self")
+    wrongproblems = models.ManyToManyField("self")
+    twinproblems = models.ManyToManyField("self")
     def __unicode__(self):
         # print (self.category)
         # print(self.categorychoice[self.category])
