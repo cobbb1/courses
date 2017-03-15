@@ -1,3 +1,7 @@
+/courses/courses/settings.py
+/courses/courses/__init__.py
+*.pyc
+*.pyo
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
