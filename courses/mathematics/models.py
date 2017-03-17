@@ -23,7 +23,8 @@ class Question(models.Model):
         (1,"Expl"),
         (2,"Exer"),
         (3,"Prob"),
-        (4, "DIY")
+        (4, "DIY"),
+        (5,"Qui")
     )
     category = models.IntegerField(choices=categorychoice)
     problem = models.TextField()
