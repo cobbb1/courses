@@ -52,7 +52,8 @@ class Question(models.Model):
         ("C","C"),
         ("D","D"),
         ("E","E"),
-        ("F","F")
+        ("F","F"),
+        ("G","G"),
     )
     answer = models.CharField(choices=answerchoice,max_length=200)
     solutionspicture1 = models.ImageField(null=True,blank=True,upload_to="theall/image")
