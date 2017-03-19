@@ -55,3 +55,4 @@ courses/mathematics/migrations/*
 .idea/workspace.xml
 courses/courses/*
 courses/course.sql
+courses/.idea/workspace.xml
