@@ -54,3 +54,6 @@ def preview(request):
     #print(serializers.serialize("json",response_data))
     return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
 
+def allquestion(request):
+    response_data = Question.objects.all()
+    return HttpResponse(serializers.serialize("json", response_data), content_type="application/json")
