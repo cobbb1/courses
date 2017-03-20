@@ -51,8 +51,8 @@ Temporary Items
 courses/theall/*
 courses/mathematics/migrations/*
 .idea/workspace.xml
-.idea/workspace.xml
-.idea/workspace.xml
 courses/courses/*
 courses/course.sql
 courses/.idea/workspace.xml
+*.pyc
+*.pyo
