@@ -59,3 +59,4 @@ courses/course.sql
 courses/.idea/workspace.xml
 *.pyc
 *.pyo
+*.xml
