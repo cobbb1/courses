@@ -5,6 +5,30 @@ from django.db import models
 # Create your models here.
 
 
+class Users(models.Model):
+    id = models.AutoField(primary_key=True)
+    names = models.CharField(max_length=200)
+    question = models.ManyToManyField("Question",through_fields=("userid","questionid"),through="UserQuestion")
+    neuron = models.ManyToManyField("Neuron",  through_fields=("userid","neuronid"),through="UserNeuron")
+    token = models.CharField(max_length=100)
+    login = models.DateTimeField()
+
+
+
+class UserQuestion(models.Model):
+    userid = models.ForeignKey(Users,on_delete=models.CASCADE)
+    questionid = models.ForeignKey("Question",on_delete=models.CASCADE)
+    time = models.DateTimeField()
+    e = models.IntegerField()
+    answer = models.CharField(max_length=100)
+    right=models.CharField(max_length=100)
+
+
+class UserNeuron(models.Model):
+    userid = models.ForeignKey(Users,on_delete = models.CASCADE)
+    neuronid = models.ForeignKey("Neuron",on_delete = models.CASCADE)
+    familiar = models.FloatField()
+
 class Connect(models.Model):
     begin = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
     ending = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
