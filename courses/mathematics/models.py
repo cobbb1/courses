@@ -4,6 +4,12 @@ from django.db import models
 
 # Create your models here.
 
+
+class Connect(models.Model):
+    begin = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
+    ending = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
+    detail = models.CharField(max_length=200)
+
 class Neuron(models.Model):
     def __str__(self):
         return self.title
@@ -14,6 +20,23 @@ class Neuron(models.Model):
         (3,"3")
     )
     detail = models.TextField()
+    to = models.ManyToManyField('self',through_fields=("begin","ending"),through=Connect,symmetrical=False)
+    x = models.FloatField()
+    y = models.FloatField()
+    a = models.FloatField()
+    b = models.FloatField()
+    chapter = models.ForeignKey('Chapter',on_delete=models.CASCADE)
+
+class User(models.Model):
+    id = models.CharField(max_length=100,primary_key=True)
+
+
+class Chapter(models.Model):
+    def __str__(self):
+        return self.id
+    id = models.CharField(max_length=100,primary_key=True)
+
+
 
 
 class Question(models.Model):
