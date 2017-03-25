@@ -51,8 +51,7 @@ class Neuron(models.Model):
     b = models.FloatField()
     chapter = models.ForeignKey('Chapter',on_delete=models.CASCADE)
 
-class User(models.Model):
-    id = models.CharField(max_length=100,primary_key=True)
+
 
 
 class Chapter(models.Model):
