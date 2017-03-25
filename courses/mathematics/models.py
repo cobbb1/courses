@@ -10,8 +10,8 @@ class Users(models.Model):
     names = models.CharField(max_length=200)
     question = models.ManyToManyField("Question",through_fields=("userid","questionid"),through="UserQuestion")
     neuron = models.ManyToManyField("Neuron",  through_fields=("userid","neuronid"),through="UserNeuron")
-    token = models.CharField(max_length=100)
-    login = models.DateTimeField()
+    token = models.CharField(max_length=100,blank=True,null=True)
+    login = models.DateTimeField(blank=True)
 
 
 
@@ -32,7 +32,7 @@ class UserNeuron(models.Model):
 class Connect(models.Model):
     begin = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
     ending = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
-    detail = models.CharField(max_length=200)
+    detail = models.CharField(max_length=200,null=True,blank=True)
 
 class Neuron(models.Model):
     def __str__(self):
