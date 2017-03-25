@@ -10,6 +10,7 @@ from django.conf.urls import include
 urlpatterns = [
     url(r'^questions$' , views.index, name="zc"),
     url(r'^neurons$' , views.indexz, name="zcq"),
+    url(r'^api/users/' , include("mathematics.server.use.url")),
     url(r'^api/neurons/' ,include("mathematics.server.neurons.url") ),
     url(r'^$' , views.index, name="zc"),
     url(r'^api/connects/' , include("mathematics.server.connects.url")),
