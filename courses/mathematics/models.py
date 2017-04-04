@@ -38,7 +38,7 @@ class Connect(models.Model):
 
 class Neuron(models.Model):
     def __str__(self):
-        return self.title + "-" + self.chapter
+        return self.title + "-" + str(self.chapter)
     title = models.CharField(max_length=200)
     category = (
         (1,"1"),
