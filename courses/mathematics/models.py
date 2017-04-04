@@ -31,14 +31,14 @@ class UserNeuron(models.Model):
 
 class Connect(models.Model):
     def __str__(self):
-        return str(self.begin) + "-" + str(self.end)
+        return str(self.begin)+"-"+str(self.ending)
     begin = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
     ending = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
     detail = models.CharField(max_length=200,null=True,blank=True)
 
 class Neuron(models.Model):
     def __str__(self):
-        return self.title + "-" + str(self.chapter)
+        return str(self.title) + "-" + str(self.chapter)
     title = models.CharField(max_length=200)
     category = (
         (1,"1"),
