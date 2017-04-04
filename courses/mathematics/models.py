@@ -52,7 +52,9 @@ class Neuron(models.Model):
     a = models.FloatField()
     b = models.FloatField()
     names = models.CharField(max_length=200)
-    bolder = models.IntegerField(blank=True,bull=True)
+    fonts = models.CharField(max_length=100)
+    bolder = models.IntegerField(blank=True,null=True)
+
     chapter = models.ForeignKey('Chapter',on_delete=models.CASCADE)
 
 
