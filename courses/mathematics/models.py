@@ -30,13 +30,15 @@ class UserNeuron(models.Model):
     familiar = models.FloatField()
 
 class Connect(models.Model):
+    def __str__(self):
+        return str(self.begin) + "-" + str(self.end)
     begin = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
     ending = models.ForeignKey('Neuron',on_delete=models.CASCADE,related_name="+")
     detail = models.CharField(max_length=200,null=True,blank=True)
 
 class Neuron(models.Model):
     def __str__(self):
-        return self.title
+        return self.title + "-" + self.chapter
     title = models.CharField(max_length=200)
     category = (
         (1,"1"),
@@ -49,6 +51,8 @@ class Neuron(models.Model):
     y = models.FloatField()
     a = models.FloatField()
     b = models.FloatField()
+    names = models.CharField(max_length=200)
+    bolder = models.IntegerField(blank=True,bull=True)
     chapter = models.ForeignKey('Chapter',on_delete=models.CASCADE)
 
 
