@@ -55,6 +55,15 @@ class Neuron(models.Model):
     fonts = models.CharField(max_length=100,blank=True,null=True)
     bolder = models.IntegerField(blank=True,null=True)
 
+
+    neurontypes = (
+        (1,"1"),
+        (2,"2"),
+        (3,"3")
+    )
+
+    typ = models.IntegerField(choices=neurontypes,default=1)
+
     chapter = models.ForeignKey('Chapter',on_delete=models.CASCADE)
 
 
