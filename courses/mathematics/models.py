@@ -16,6 +16,8 @@ class Users(models.Model):
 
 
 class UserQuestion(models.Model):
+    def __str__(self):
+        return str(self.userid)+"-"+str(self.questionid)
     userid = models.ForeignKey(Users,on_delete=models.CASCADE)
     questionid = models.ForeignKey("question",on_delete=models.CASCADE)
     correct = models.CharField(max_length=100)
