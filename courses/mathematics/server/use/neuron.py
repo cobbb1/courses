@@ -15,7 +15,7 @@ def neuron(userid,questionid):
         print(n)
         w = UserQuestion.objects.filter(questionid__linkneuron__id=z.id,userid=userid.id,correct="right").values("questionid").annotate(counts=Count(questionid,distinct=True))
         print(w)
-        l = float(len(w)/n.count())
+        l = float(len(w))/n.count()
         if m.count()==0:
             j = UserNeuron(neuronid=z,userid=userid,familiar=l)
             j.save()
