@@ -16,7 +16,7 @@ from neuron import neuron
 def atquestion(request,userid,questionid):
     userid=int(userid)
     questionid=int(questionid)
-    print(request)
+    print(questionid)
     if request.POST.has_key("choice")==0:
         return get_response(403,'{"message":"no choice"}',{})
     z = Question.objects.filter(id=questionid)
