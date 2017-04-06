@@ -16,10 +16,8 @@ def gettokens(request):
             token = w[0]
     else:
         token = request.COOKIES["token"]
-    print(1)
     z = Users.objects.filter(token=token)
     if z.count()==0:
-        print("3")
         return ""
     else:
         return z[0].id
