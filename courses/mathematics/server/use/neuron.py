@@ -10,7 +10,9 @@ from django.db.models import Count
 def neuron(userid,questionid):
     e = questionid.linkneuron.all()
     for z in e:
+        print(questionid.id)
         m = UserNeuron.objects.filter(neuronid=z.id,userid=userid.id)
+        print(m)
         n = z.question_set.all()
         print(n)
         w = UserQuestion.objects.filter(questionid__linkneuron__id=z.id,userid=userid.id,correct="right").values("questionid").annotate(counts=Count(questionid,distinct=True))
