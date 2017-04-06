@@ -9,8 +9,8 @@ from getquestion import getquestion
 from atquestion import atquestion
 
 urlpatterns = [
-    url(r'^(?P<user_id>.+?)/neurons/(?P<chapter_id>.+?)' , getNeuron),
-    url(r'^(?P<userid>.+?)/questions/(?P<questionid>.+?)' , atquestion),
+    url(r'^(?P<user_id>.+?)/neurons/(?P<chapter_id>.+)' , getNeuron),
+    url(r'^(?P<userid>.+?)/questions/(?P<questionid>.+)' , atquestion),
     url(r'^(?P<userid>.+?)/questions' , getquestion),
 
     url(r'^(?P<token>.+?)$' , get),
