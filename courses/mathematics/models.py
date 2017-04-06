@@ -8,7 +8,7 @@ from django.db import models
 class Users(models.Model):
     id = models.AutoField(primary_key=True)
     names = models.CharField(max_length=200)
-    question = models.ManyToManyField("Question",through_fields=("userid","questionid"),through="UserQuestion")
+    question = models.ManyToManyField("question",through_fields=("userid","questionid"),through="UserQuestion")
     neuron = models.ManyToManyField("Neuron",  through_fields=("userid","neuronid"),through="UserNeuron")
     token = models.CharField(max_length=100,blank=True,null=True)
     login = models.DateTimeField(blank=True)
@@ -17,9 +17,10 @@ class Users(models.Model):
 
 class UserQuestion(models.Model):
     userid = models.ForeignKey(Users,on_delete=models.CASCADE)
-    questionid = models.ForeignKey("Question",on_delete=models.CASCADE)
+    questionid = models.ForeignKey("question",on_delete=models.CASCADE)
+    correct = models.CharField(max_length=100)
     time = models.DateTimeField()
-    e = models.IntegerField()
+
     answer = models.CharField(max_length=100)
     right=models.CharField(max_length=100)
 
@@ -74,6 +75,15 @@ class Chapter(models.Model):
         return self.id
     id = models.CharField(max_length=100,primary_key=True)
 
+
+class Action(models.Model):
+    userid = models.ForeignKey(Users)
+    url = models.CharField(max_length=100)
+    request = models.CharField(max_length=600)
+    time = models.DateTimeField()
+    response = models.CharField(max_length=600)
+    responsestatus = models.IntegerField()
+    token = models.TextField()
 
 
 
@@ -150,3 +160,6 @@ class Question(models.Model):
         # print (self.category)
         # print(self.categorychoice[self.category])
         return self.categorychoice[self.category-1][1]+self.code #tuple inside tuples
+
+
+

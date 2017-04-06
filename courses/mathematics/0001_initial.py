@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Question',
+            name='question',
             fields=[
                 ('code', models.CharField(max_length=100, primary_key=True, serialize=False)),
                 ('category', models.IntegerField(choices=[(1, 'Expl'), (2, 'Exer'), (3, 'Prob'), (4, 'DIY')])),
@@ -65,9 +65,9 @@ class Migration(migrations.Migration):
                 ('gussingparameter', models.FloatField(blank=True, null=True)),
                 ('difficulty', models.IntegerField(choices=[(1, 'easy'), (2, 'not very easy'), (3, 'medium'), (4, 'a little difficult'), (5, 'difficult')])),
                 ('linkneuron', models.ManyToManyField(to='mathematics.Neuron')),
-                ('rightproblems', models.ManyToManyField(related_name='_question_rightproblems_+', to='mathematics.Question')),
-                ('twinproblems', models.ManyToManyField(related_name='_question_twinproblems_+', to='mathematics.Question')),
-                ('wrongproblems', models.ManyToManyField(related_name='_question_wrongproblems_+', to='mathematics.Question')),
+                ('rightproblems', models.ManyToManyField(related_name='_question_rightproblems_+', to='mathematics.question')),
+                ('twinproblems', models.ManyToManyField(related_name='_question_twinproblems_+', to='mathematics.question')),
+                ('wrongproblems', models.ManyToManyField(related_name='_question_wrongproblems_+', to='mathematics.question')),
             ],
         ),
     ]
