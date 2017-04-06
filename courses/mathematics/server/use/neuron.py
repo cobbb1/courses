@@ -12,12 +12,14 @@ def neuron(userid,questionid):
     for z in e:
         m = UserNeuron.objects.filter(neuronid=z.id,userid=userid.id)
         n = UserQuestion.objects.filter(questionid__linkneuron__id=z.id,userid=userid.id).annotate(counts=Count(questionid,distinct=True))
-        print(n[0])
         w = UserQuestion.objects.filter(questionid__linkneuron__id=z.id,userid=userid.id,correct="right").annotate(counts=Count(questionid,distinct=True))
-        print(w[0])
+        if w.count()==0:
+            l = 0
+        else:
+            l = float(w[0].counts)/n[0].counts
         if m.count()==0:
-            j = UserNeuron(neuronid=z,userid=userid,familiar=float(w[0].counts)/n[0].counts)
+            j = UserNeuron(neuronid=z,userid=userid,familiar=l)
             j.save()
         else:
-            m.update(familiar=float(w[0].counts)/n[0].counts)
+            m.update(familiar=l)
     return 0
