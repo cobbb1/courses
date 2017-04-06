@@ -10,7 +10,7 @@ from mathematics.server.getresponse import get_response
 
 
 def getlist(request):
-    w = Question.objects.only("id","category","code","difficuly","sensitivity")
+    w = Question.objects.only("id","category","code","difficulty","sensitivity")
     if request.GET.has_key("neurons"):
         w = Neuron.objects.filter(id=int(request.GET["neurons"]))[0].question_set.only("code","category","id")
     if request.GET.has_key("difficulty"):
