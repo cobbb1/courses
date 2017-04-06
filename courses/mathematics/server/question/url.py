@@ -8,6 +8,6 @@ from get import get
 from getlist import getlist
 
 urlpatterns = [
-    url(r'^questions/(?P<id>.+?)' , get),
-    url(r'^questions' , getlist)
+    url(r'^/(?P<id>.+?)' , get),
+    url(r'^' , getlist)
 ]
