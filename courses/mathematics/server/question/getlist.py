@@ -12,7 +12,7 @@ from mathematics.server.getresponse import get_response
 def getlist(request):
     w = Question.objects.all()
     if request.GET.has_key("neurons"):
-        w = Neuron.objects.filter(id=int(request.GET["neurons"])).questions.all()
+        w = Neuron.objects.filter(id=int(request.GET["neurons"]))[0].question_set.all()
     if request.GET.has_key("difficulty"):
         w = w.filter(difficulty=int(request.GET["difficulty"]))
     return get_response(200,serialize("json",w.only("id","code","category")),{})
