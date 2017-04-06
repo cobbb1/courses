@@ -18,7 +18,7 @@ def neuron(userid,questionid):
         if w.count()==0:
             l = 0
         else:
-            l = float(w[0]["counts"])/n[0]["counts"]
+            l = float(len(w))/len(n)
         if m.count()==0:
             j = UserNeuron(neuronid=z,userid=userid,familiar=l)
             j.save()
