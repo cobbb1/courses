@@ -12,5 +12,5 @@ def get(request,token):
         return get_response(403,"{'message':''}",{})
     else:
         z = get_response(200,"{'userid':'%s'}" % users[0].names,{"token":token})
-        z.set_default("location","lala.ust.hk:8000")
+        z.setdefault("location","lala.ust.hk:8000")
         return z
