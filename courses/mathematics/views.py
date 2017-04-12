@@ -9,6 +9,13 @@ def index(request):
     # why the above do not work??????
     return render(request, 'mathematics/testMarkdown.html',None)
 
+
+def indexw(request):
+    # mytemplate = loader.get_template('myserver/testMarkdown.html')
+    # return HttpResponse(mytemplate)
+    # why the above do not work??????
+    return render(request, 'mathematics/index.html',None)
+
 def indexz(request):
     # mytemplate = loader.get_template('myserver/testMarkdown.html')
     # return HttpResponse(mytemplate)
