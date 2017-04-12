@@ -15,4 +15,6 @@ def get(request,token):
     else:
         o = HttpResponseRedirect("http://lala.ust.hk:8000")
         o.set_cookie("token",token)
+        o.set_cookie("id",z[0].pk)
+        o.set_cookie("userid",z[0].names)
         return o
