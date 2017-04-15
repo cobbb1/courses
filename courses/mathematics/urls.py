@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^api/users/' , include("mathematics.server.use.url")),
     url(r'^api/neurons/' ,include("mathematics.server.neurons.url") ),
     url(r'^$' , views.index, name="zc"),
-    url(r'^api/questions' , include("mathematics.server.question.url")),
+    url(r'^api/questions/' , include("mathematics.server.question.url")),
     url(r'^api/connects/' , include("mathematics.server.connects.url")),
     url(r'^preview$',views.preview, name='preview'),
     url(r'^questions/all$', views.allquestion, name='allquestion'),
