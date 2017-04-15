@@ -67,6 +67,18 @@ class Neuron(models.Model):
 
     typ = models.IntegerField(choices=neurontypes,default=1)
 
+
+    neuronsdifficulty = (
+        (1,"1"),
+        (2,"2"),
+        (3,"3")
+    )
+
+
+    difficulty = models.IntegerField(choices=neuronsdifficulty,default=1)
+
+    complexity = models.IntegerField()
+
     chapter = models.ForeignKey('Chapter',on_delete=models.CASCADE)
 
 
