@@ -8,7 +8,7 @@ from .models import Neuron
 from .models import Connect
 from .models import Users
 from .models import UserNeuron
-from .models import Action
+from .models import Action,UserQuestion
 admin.site.register(Neuron)
 admin.site.register(Question)
 admin.site.register(Chapter)
@@ -16,3 +16,4 @@ admin.site.register(Connect)
 admin.site.register(Users)
 admin.site.register(UserNeuron)
 admin.site.register(Action)
+admin.site.register(UserQuestion)
