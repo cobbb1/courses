@@ -5,5 +5,5 @@ from django.conf.urls import url
 from getlist import getlist
 
 urlpatterns=[
-    url(r'^(?P<chapter_id>.+?)' , getlist)
+    url(r'^(?P<chapter_id>.+)' , getlist)
 ]
