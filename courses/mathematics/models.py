@@ -97,6 +97,8 @@ class Action(models.Model):
     time = models.DateTimeField()
     response = models.CharField(max_length=600)
     responsestatus = models.IntegerField()
+    method = models.CharField(max_length=100)
+    content = models.CharField(max_length=100)
     token = models.TextField()
 
 

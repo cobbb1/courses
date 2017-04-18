@@ -26,7 +26,10 @@ def create(request,response,userid):
     if userid.count()!=1:
         print("1")
         return 0
+    l = ""
+    if response.status_code==200:
+        l = response.content
     userid = userid[0]
-    action = Action(userid=userid,url=request.path,request=z,time=w,response=response.content,responsestatus=response.status_code,token=request.COOKIES["token"])
+    action = Action(userid=userid,url=request.path,request=z,time=w,response=l,responsestatus=response.status_code,token=request.COOKIES["token"])
     action.save()
     return 1
