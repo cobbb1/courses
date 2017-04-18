@@ -6,6 +6,7 @@ __author__ = 'Administrator'
 
 from django.views.decorators.csrf import csrf_exempt
 from mathematics.models import Action,Users
+import re
 
 
 
@@ -27,7 +28,7 @@ def create(request,response,userid):
         print("1")
         return 0
     l = ""
-    if response.status_code==200:
+    if response.status_code==200 and len(re.findall("/get/api",request.path))!=0:
         l = response.content
     userid = userid[0]
     action = Action(userid=userid,url=request.path,request=z,time=w,response=l,responsestatus=response.status_code,token=request.COOKIES["token"])
