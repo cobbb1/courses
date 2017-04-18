@@ -31,6 +31,7 @@ def atquestion(request,userid,questionid):
         l = "right"
     else:
         l = "wrong"
+
     w = UserQuestion(questionid=questionid,userid=userid,answer=request.POST["choice"],time=datetime.now(),right=z[0].answer,correct=l)
     w.save()
     if z[0].answer==request.POST["choice"]:

@@ -13,6 +13,7 @@ class actionm(object):
         # the view (and later middleware) are called.
 
         response = self.get_response(request)
+        response["Access-Control-Allow-Origin"] = "*"
         if "/admin" in request.path:
             return response
         z = gettokens(request)
