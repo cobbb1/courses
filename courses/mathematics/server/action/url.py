@@ -9,5 +9,5 @@ from django.conf.urls import url
 from getlist import getlist
 
 urlpattern=[
-    url(r'^$',getlist)
+    url(r'^',  getlist)
 ]
