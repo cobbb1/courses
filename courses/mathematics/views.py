@@ -63,4 +63,6 @@ def preview(request):
 
 def allquestion(request):
     response_data = Question.objects.all()
+    if request.GET.has_key("category"):
+        response_data = response_data.filter(category=int(request.GET["category"]))
     return HttpResponse(serializers.serialize("json", response_data), content_type="application/json")

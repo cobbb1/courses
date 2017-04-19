@@ -77,7 +77,7 @@ class Neuron(models.Model):
 
     difficulty = models.IntegerField(choices=neuronsdifficulty,default=1)
 
-    complexity = models.IntegerField()
+    complexity = models.IntegerField(default=0)
 
     chapter = models.ForeignKey('Chapter',on_delete=models.CASCADE)
 
@@ -97,8 +97,8 @@ class Action(models.Model):
     time = models.DateTimeField()
     response = models.CharField(max_length=600)
     responsestatus = models.IntegerField()
-    method = models.CharField(max_length=100)
-    content = models.CharField(max_length=100)
+    method = models.CharField(max_length=100,default="")
+    content = models.CharField(max_length=100,default="")
     token = models.TextField()
 
 
