@@ -19,19 +19,19 @@ def evaluate(request,userid):
     m5=0
     m6=0
     for l in z:
-        m1 = m1 + l.questionid.linkability1
-        m2 = m2 + l.questionid.linkability2
-        m3 = m3 + l.questionid.linkability3
-        m4 = m4 + l.questionid.linkability4
-        m5 = m5 + l.questionid.linkability5
-        m6 = m6 + l.questionid.linkability6
+        m1 = m1 - l.questionid.linkability1
+        m2 = m2 - l.questionid.linkability2
+        m3 = m3 - l.questionid.linkability3
+        m4 = m4 - l.questionid.linkability4
+        m5 = m5 - l.questionid.linkability5
+        m6 = m6 - l.questionid.linkability6
     for i in w:
-        m1 = m1 - i.questionid.linkability1
-        m2 = m2 - i.questionid.linkability2
-        m3 = m3 - i.questionid.linkability3
-        m4 = m4 - i.questionid.linkability4
-        m5 = m5 - i.questionid.linkability5
-        m6 = m6 - i.questionid.linkability6
+        m1 = m1 + i.questionid.linkability1
+        m2 = m2 + i.questionid.linkability2
+        m3 = m3 + i.questionid.linkability3
+        m4 = m4 + i.questionid.linkability4
+        m5 = m5 + i.questionid.linkability5
+        m6 = m6 + i.questionid.linkability6
     j = w.count()+z.count()
     if 0!=w.count()+z.count():
         m1 = float(m1)/j
