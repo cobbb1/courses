@@ -12,7 +12,8 @@ class Users(models.Model):
     neuron = models.ManyToManyField("Neuron",  through_fields=("userid","neuronid"),through="UserNeuron")
     token = models.CharField(max_length=100,blank=True,null=True)
     login = models.DateTimeField(blank=True)
-
+    def __str__(self):
+        return self.names
 
 
 class UserQuestion(models.Model):
@@ -28,6 +29,8 @@ class UserQuestion(models.Model):
 
 
 class UserNeuron(models.Model):
+    def __str__(self):
+        return str(self.userid) + "-" + str(self.neuronid)
     userid = models.ForeignKey(Users,on_delete = models.CASCADE)
     neuronid = models.ForeignKey("Neuron",on_delete = models.CASCADE)
     familiar = models.FloatField()
