@@ -84,7 +84,7 @@ class Neuron(models.Model):
 
     chapter = models.ForeignKey('Chapter',on_delete=models.CASCADE)
 
-
+    calculateddifficulty = models.FloatField(null=True,blank=True)
 
 
 class Chapter(models.Model):
@@ -175,6 +175,7 @@ class Question(models.Model):
     rightproblems = models.ManyToManyField("self",blank=True)
     wrongproblems = models.ManyToManyField("self",blank=True)
     twinproblems = models.ManyToManyField("self",blank=True)
+    calculateddifficulty = models.FloatField(null=True,blank=True)
     def __unicode__(self):
         # print (self.category)
         # print(self.categorychoice[self.category])
