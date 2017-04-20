@@ -18,9 +18,9 @@ def getlist(request):
     return HttpResponse(serializers.serialize("json", w, fields=("id","category","code","difficulty","sensitivity")), content_type="application/json")
 
 def calculateDifficulty(request):
-    frontweight = 1.0;
-    latterweight = 1.5;
-    threshold = 10.0;
+    frontweight = 1.0
+    latterweight = 1.5
+    threshold = 10.0
     questions = Question.objects.all()
     userquestions = UserQuestion.objects.all()
     # recalculate each question's difficulty
