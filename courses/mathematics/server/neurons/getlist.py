@@ -11,19 +11,13 @@ import json
 
 
 def getlist(request,chapter_id):
-    neurons = Neuron.objects.filter(chapter=chapter_id)
+    neurons = Neuron.objects.filter(chapter=chapter_id).values()
     neurone = []
     for neuron in neurons:
-        example = list(neuron.question_set.filter(category=1).values_list("id",flat=True))
-        exercise = list(neuron.question_set.filter(category=2).values_list("id",flat=True))
-        neuronz = dict()
-        neuronz["exercise"]=exercise
-        neuronz["example"]=example
-        neurone.append(neuronz)
-    neurons = list(neurons.values())
-    for m in range(0,len(neurons)):
-        neurons[m]["exercise"] = neurone[m]["exercise"]
-        neurons[m]["example"] = neurone[m]["example"]
+        example = list(Question.objects.filter(linkneuron=neuron).filter(category=1).values_list("id",flat=True))
+        exercise = list(Question.objects.filter(linkneuron=neuron).filter(category=2).values_list("id",flat=True))
+        neuron["exercise"]=exercise
+        neuron["example"]=example
     return HttpResponse(json.dumps(neurons),content_type="applcation/text")
 
 def calculateDifficulty(request):
