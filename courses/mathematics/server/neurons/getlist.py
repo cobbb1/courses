@@ -18,6 +18,7 @@ def getlist(request,chapter_id):
         exercise = list(Question.objects.filter(linkneuron=neuron["id"]).filter(category=2).values_list("id",flat=True))
         neuron["exercise"]=exercise
         neuron["example"]=example
+    neurons = list(neurons)
     return HttpResponse(json.dumps(neurons),content_type="applcation/text")
 
 def calculateDifficulty(request):
