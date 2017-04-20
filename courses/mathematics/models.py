@@ -11,7 +11,7 @@ class Users(models.Model):
     question = models.ManyToManyField("question",through_fields=("userid","questionid"),through="UserQuestion")
     neuron = models.ManyToManyField("Neuron",  through_fields=("userid","neuronid"),through="UserNeuron")
     token = models.CharField(max_length=100,blank=True,null=True)
-    login = models.DateTimeField(blank=True)
+    login = models.DateTimeField(blank=True, null=True)
     def __str__(self):
         return self.names
 

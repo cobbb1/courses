@@ -19,6 +19,6 @@ urlpatterns = [
     url(r'^preview$',views.preview, name='preview'),
     url(r'^questions/all$', views.allquestion, name='allquestion'),
     url(r'^questions/(?P<code>.+)$', views.get, name='index'),
-    url(r'^previewneurons$', views.getneuron, name='index')
-
+    url(r'^previewneurons$', views.getneuron, name='index'),
+    url(r'^api/students/', include("mathematics.server.students.url"))
 ]
