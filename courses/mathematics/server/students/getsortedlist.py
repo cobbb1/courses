@@ -13,7 +13,7 @@ def getSortedStudentList(request):
     all_students = Users.objects.only("id","names")
     if request.GET.has_key('chapter'):
         # get all the question ids in one or some chapter, since the chapter id is char field
-        questions_in_one_chapter = Question.objects.filter(linkneuron=Neuron.objects.filter(chapter=request.GET["chapter"])).only("id")
+        questions_in_one_chapter = Question.objects.filter(linkneuron__in = Neuron.objects.filter(chapter=request.GET["chapter"])).only("id")
         print(questions_in_one_chapter)
 
         # get all the question feedbacks in these chapters
