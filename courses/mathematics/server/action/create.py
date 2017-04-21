@@ -28,7 +28,7 @@ def create(request,response,userid):
         print("1")
         return 0
     l = ""
-    if response.status_code==200 and len(re.findall("/get/api/users/.+?/questions/.+",request.path))!=0 and "POST"++ request.method:
+    if response.status_code==200 and len(re.findall("/get/api/users/.+?/questions/.+",request.path))!=0 and "POST"==request.method:
         l = response.content
     userid = userid[0]
     action = Action(userid=userid,url=request.path,request=z,time=w,response=l,responsestatus=response.status_code,token=request.COOKIES["token"])
