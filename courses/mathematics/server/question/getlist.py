@@ -50,3 +50,42 @@ def calculateDifficulty(request):
     return HttpResponse(
         serializers.serialize("json", questions, fields=("id", "code", "difficulty", "calculateddifficulty")),
         content_type="application/json")
+
+from django.db.models import Count, Min, Sum, Avg
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
+import json
+
+def getmostdone(request):
+    userquestions = UserQuestion.objects.all()
+    # group by questionid and count number of questions have the same questionid
+    questionfrequency = userquestions.values('questionid').annotate(question_count=Count('questionid'))
+
+    #conver it to list, or will not be serialized
+    result_list = list(questionfrequency.values('questionid', 'question_count'))
+    sorted(result_list, key=lambda temp: temp['question_count'])
+    return HttpResponse(json.dumps(result_list))
+
+def getmostuseful(request):
+    return
+
+def getmostdifficulty(request):
+    userquestions = UserQuestion.objects.all().values("questionid").annotate(Count("questionid"))
+    total = 0;
+    right = 0;
+    lowest_accuracy = 1.0
+    lowest_accuracy_id = userquestions[0]["questionid"]
+    lowest_accuracy_total = total
+    lowest_accuracy_right = 0
+    for question in userquestions:
+        total = question["questionid__count"]
+        right = UserQuestion.objects.filter(questionid = question["questionid"], correct="right").count()
+        if total != 0:
+            temp_accuracy = float(right) / float(total)
+            if temp_accuracy < lowest_accuracy: # most wrong
+                lowest_accuracy = temp_accuracy
+                lowest_accuracy_id = question["questionid"]
+                lowest_accuracy_total = total
+                lowest_accuracy_right = right
+    record = {"questionid": lowest_accuracy_id, "accuracy": lowest_accuracy, "total":lowest_accuracy_total, "right":lowest_accuracy_right}
+    return HttpResponse(json.dumps(record), content_type="application/json")
