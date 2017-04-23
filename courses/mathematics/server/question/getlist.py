@@ -89,3 +89,9 @@ def getmostdifficulty(request):
                 lowest_accuracy_right = right
     record = {"questionid": lowest_accuracy_id, "accuracy": lowest_accuracy, "total":lowest_accuracy_total, "right":lowest_accuracy_right}
     return HttpResponse(json.dumps(record), content_type="application/json")
+
+def search(request):
+    if request.GET.has_key('keyword'):
+        keyword = request.GET["keyword"]
+        result = Question.objects.filter(problem__icontains=keyword)
+        return HttpResponse(serializers.serialize("json", result), content_type="application/json")

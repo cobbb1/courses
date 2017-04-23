@@ -55,3 +55,9 @@ def calculateDifficulty(request):
     return HttpResponse(
         serializers.serialize("json", neurons, fields=("title", "calculateddifficulty")),
         content_type="application/json")
+
+def search(request):
+    if request.GET.has_key('keyword'):
+        keyword = request.GET["keyword"]
+        result = Neuron.objects.filter(title__icontains=keyword)
+        return HttpResponse(serializers.serialize("json", result), content_type="application/json")
