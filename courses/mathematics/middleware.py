@@ -15,9 +15,11 @@ class TokenAuthenticationMiddleware(object):
         print(request)
         path = request.path
         # if admin site, return position, others return None
-        match = re.match("/admin/*", path, flags=0)
+        match1 = re.match("/admin/*", path, flags=0)
+        match2 = re.match("/get/api/users/*", path, flags=0)
+        match3 = re.match("/get/$", path, flags=0)
         # if not the admin site
-        if match != None:
+        if match1 != None or match2 != None or match3 != None:
             response = self.get_response(request)
             return response
         if request.COOKIES.has_key("token") and request.COOKIES.has_key("userid"):
