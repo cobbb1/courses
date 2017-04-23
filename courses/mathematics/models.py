@@ -92,6 +92,10 @@ class Chapter(models.Model):
         return self.id
     id = models.CharField(max_length=100,primary_key=True)
 
+class Keyword(models.Model):
+    def __str__(self):
+        return self.keyword
+    keyword = models.CharField(max_length=100,primary_key=True)
 
 class Action(models.Model):
     userid = models.ForeignKey(Users)
@@ -176,6 +180,7 @@ class Question(models.Model):
     wrongproblems = models.ManyToManyField("self",blank=True)
     twinproblems = models.ManyToManyField("self",blank=True)
     calculateddifficulty = models.FloatField(null=True,blank=True)
+    keyword = models.ManyToManyField(Keyword,null=True)
     def __unicode__(self):
         # print (self.category)
         # print(self.categorychoice[self.category])

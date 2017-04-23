@@ -1,7 +1,7 @@
 __author__ = 'Administrator'
 
 from django.core.serializers import serialize
-from mathematics.models import Question,Neuron,UserQuestion
+from mathematics.models import Question,Neuron,UserQuestion,Keyword
 from mathematics.server.getresponse import get_response
 from django.http import HttpResponse
 from django.core import serializers
@@ -93,5 +93,5 @@ def getmostdifficulty(request):
 def search(request):
     if request.GET.has_key('keyword'):
         keyword = request.GET["keyword"]
-        result = Question.objects.filter(problem__icontains=keyword)
+        result = Question.objects.filter(keyword__in =Keyword.objects.filter(keyword__icontains=keyword))
         return HttpResponse(serializers.serialize("json", result), content_type="application/json")
