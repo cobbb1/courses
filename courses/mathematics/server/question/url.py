@@ -8,11 +8,11 @@ from get import get
 from getlist import getlist,calculateDifficulty,getmostdone,getmostdifficulty,getmostuseful,search
 
 urlpatterns = [
-    url(r'^search$', search),
-    url(r'^mostdiff$', getmostdifficulty), # according to accuracy
-    url(r'^mostuseful$', getmostuseful),
-    url(r'^mostdone$', getmostdone),
-    url(r'^rundiff$', calculateDifficulty),
+    url(r'^search', search),
+    url(r'^mostdiff', getmostdifficulty), # according to accuracy
+    url(r'^mostuseful', getmostuseful),
+    url(r'^mostdone', getmostdone),
+    url(r'^rundiff', calculateDifficulty),
     url(r'^(?P<id>.+)' , get),
     url(r'^' , getlist)
 ]
