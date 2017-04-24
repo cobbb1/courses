@@ -41,7 +41,7 @@ def getSortedStudentList(request):
             else:
                 accuracy = 0
 
-            record = {"userid":student.id,"username":student.names,"accuracy":accuracy}
+            record = {"userid":student.id,"username":student.names,"accuracy":accuracy,"right":count,"wrong":total-count,"count":count}
             result.append(record)
         print(result)
 

@@ -5,7 +5,7 @@ __author__ = 'Administrator'
 
 
 
-from mathematics.models import Users,UserQuestion
+from mathematics.models import Users,UserQuestion,Question
 from mathematics.server.getresponse import get_response
 
 
@@ -46,5 +46,31 @@ def evaluate(request,userid):
     o = o + '"3":'+str(m3)+','
     o = o + '"4":'+str(m4)+','
     o = o + '"5":'+str(m5)+','
-    o = o + '"6":'+str(m6)+'}'
+    o = o + '"6":'+str(m6)+','
+
+    p = UserQuestion.objects.filter(questionid__category=1,userid=userid).count()
+    w = Question.objects.filter(category=1).count()
+    o = o + '"example":'+str(p)+','+'"examplecount":' + str(w)
+
+    p = UserQuestion.objects.filter(questionid__category=2,userid=userid).count()
+    w = Question.objects.filter(category=2).count()
+    o = o + '"exercise":'+str(p)+','+'"exercisecount":' + str(w)
+
+    p = UserQuestion.objects.filter(questionid__category=3,userid=userid).count()
+    w = Question.objects.filter(category=3).count()
+    o = o + '"problem":'+str(p)+','+'"problemcount":' + str(w)
+
+    p = UserQuestion.objects.filter(questionid__category=4,userid=userid).count()
+    w = Question.objects.filter(category=4).count()
+    o = o + '"diy":'+str(p)+','+'"diycount":' + str(w)
+
+    p = UserQuestion.objects.filter(questionid__category=5,userid=userid).count()
+    w = Question.objects.filter(category=5).count()
+    o = o + '"quizs":'+str(p)+','+'"quizscount":' + str(w)
+
+
+    o = o + '}'
+
+
+
     return get_response(200,o,{})

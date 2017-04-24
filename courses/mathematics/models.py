@@ -185,6 +185,27 @@ class Question(models.Model):
         # print(self.categorychoice[self.category])
         return self.categorychoice[self.category-1][1]+self.code #tuple inside tuples
 
+class Hardness(models.Model):
+    userid = models.ForeignKey(Users,on_delete=models.CASCADE)
+    questionid = models.ForeignKey(Question,on_delete=models.CASCADE)
+    answer = models.IntegerField()
+    time = models.DateTimeField()
+    right = models.IntegerField()
+
+class Prefer(models.Model):
+    userid = models.ForeignKey(Users,on_delete=models.CASCADE)
+    questionid = models.ForeignKey(Question,on_delete=models.CASCADE)
+    answer = models.IntegerField()
+    time = models.DateTimeField()
+    right = models.IntegerField()
+
+class Useful(models.Model):
+    userid = models.ForeignKey(Users,on_delete=models.CASCADE)
+    questionid = models.ForeignKey(Question,on_delete=models.CASCADE)
+    answer = models.IntegerField()
+    time = models.DateTimeField()
+    right = models.IntegerField()
+
 class Suggestion(models.Model):
     id = models.AutoField(primary_key=True)
     userid = models.ForeignKey(Users)
