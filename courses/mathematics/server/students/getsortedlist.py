@@ -66,7 +66,7 @@ def getDoneRecord(request):
         result_list = []
         for question in questions:
             # no .values, it is an object, use . instead of [], [] is for dictionary
-            questionid = question.idm
+            questionid = question.id
             test = userquestion.filter(questionid = questionid)
             result_item = {}
             if test.count() == 0:
