@@ -3,6 +3,7 @@ __author__ = 'Administrator'
 from django.http import HttpResponse
 from django.core import serializers
 from mathematics.models import Question,Neuron,Users,Chapter,UserQuestion
+from mathematics.server.getresponse import get_response
 import json
 
 def getSortedStudentList(request):
@@ -49,3 +50,30 @@ def getSortedStudentList(request):
 
         # return the result in json format
         return HttpResponse(json.dumps(result), content_type="application/json")
+
+def getDoneRecord(request):
+    userid = 0
+    if request.GET.has_key('userid') == 0:
+        return get_response(403, '{"message":"no userid"}', {})
+    else:
+        userid = request.GET["userid"]
+        test = Users.objects.filter(id = userid)
+        if test.count() == 0:
+            return get_response(403, '{"message":"no such user"}', {})
+
+        userquestion = UserQuestion.objects.filter(userid = userid)
+        questions = Question.objects.all()
+        result_list = []
+        for question in questions:
+            # no .values, it is an object, use . instead of [], [] is for dictionary
+            questionid = question.idm
+            test = userquestion.filter(questionid = questionid)
+            result_item = {}
+            if test.count() == 0:
+                result_item={"questionid":questionid,"isdone":False}
+            else:
+                result_item = {"questionid": questionid, "isdone": True}
+            result_list.append(result_item)
+
+        return  HttpResponse(json.dumps(result_list), content_type="application/json")
+
