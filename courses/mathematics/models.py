@@ -109,7 +109,6 @@ class Action(models.Model):
     token = models.TextField()
 
 
-
 class Question(models.Model):
     id = models.AutoField(primary_key=True)
     code = models.CharField(max_length=100)
@@ -186,5 +185,19 @@ class Question(models.Model):
         # print(self.categorychoice[self.category])
         return self.categorychoice[self.category-1][1]+self.code #tuple inside tuples
 
+class Suggestion(models.Model):
+    id = models.AutoField(primary_key=True)
+    userid = models.ForeignKey(Users)
+    username = models.CharField(max_length=200)
+    time = models.DateTimeField()
+    comment = models.TextField()
+
+class QuestionSuggestion(models.Model):
+    id = models.AutoField(primary_key=True)
+    userid = models.ForeignKey(Users, on_delete=models.CASCADE)
+    username = models.CharField(max_length=200)
+    questionid = models.ForeignKey("question", on_delete=models.CASCADE)
+    time = models.DateTimeField()
+    comment = models.TextField()
 
 
