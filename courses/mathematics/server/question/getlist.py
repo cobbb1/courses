@@ -108,5 +108,5 @@ def getmostdifficulty(request):
 def search(request):
     if request.GET.has_key('keyword'):
         keyword = request.GET["keyword"]
-        result = Question.objects.filter(keyword__in =Keyword.objects.filter(keyword__icontains=keyword))
+        result = Question.objects.filter(keyword__in =Keyword.objects.filter(keyword__icontains=keyword)).distinct()
         return HttpResponse(serializers.serialize("json", result), content_type="application/json")
