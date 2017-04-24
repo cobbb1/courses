@@ -64,7 +64,22 @@ def getmostdone(request):
     #conver it to list, or will not be serialized
     result_list = list(questionfrequency.values('questionid', 'question_count'))
     sorted(result_list, key=lambda temp: temp['question_count'])
-    return HttpResponse(json.dumps(result_list))
+
+
+    result_question = []
+    # limit 10
+    result_list = result_list[0:10]
+    # combine it with the question data
+    for item in result_list:
+        count = item["question_count"]
+        questionid = item["questionid"]
+        # values change it to dicitonary
+        questionitem = Question.objects.filter(id = questionid).values()[0]
+        questionitem["question_count"] = count
+        result_question.append(questionitem)
+
+    return HttpResponse(json.dumps(result_question))
+    # return HttpResponse(json.dumps(result_list))
 
 def getmostuseful(request):
     return
