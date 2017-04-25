@@ -41,12 +41,6 @@ def evaluate(request,userid):
         m4 = float(m4)/j
         m5 = float(m5)/j
         m6 = float(m6)/j
-    m1 = m1 + 3
-    m2 = m2 + 3
-    m3 = m3 + 3
-    m4 = m4 + 3
-    m5 = m5 + 3
-    m6 = m6 + 3
     # o = ""
     # o = o + '{"1":'+str(m1)+','
     # o = o + '"2":'+str(m2)+','
