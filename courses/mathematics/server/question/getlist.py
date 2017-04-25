@@ -110,3 +110,17 @@ def search(request):
         keyword = request.GET["keyword"]
         result = Question.objects.filter(keyword__in =Keyword.objects.filter(keyword__icontains=keyword)).distinct()
         return HttpResponse(serializers.serialize("json", result), content_type="application/json")
+
+def getcount(request):
+    questions = Question.objects.all()
+    result_list = []
+    for question in questions:
+        questionid = question.id
+        code = question.code
+        donecount = UserQuestion.objects.filter(questionid=questionid).count()
+        rightcount = UserQuestion.objects.filter(questionid=questionid,correct="right").count()
+        result_item={"questionid":questionid,"questioncode":code,"donecount":donecount,"rightcount":rightcount}
+        result_list.append(result_item)
+    # the following will result in dict object has not _meta
+    # return HttpResponse(serializers.serialize("json", result_list), content_type="application/json")
+    return HttpResponse(json.dumps(result_list), content_type="application/json")
