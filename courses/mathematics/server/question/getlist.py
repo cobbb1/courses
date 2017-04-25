@@ -15,6 +15,7 @@ def getlist(request):
     if request.GET.has_key("difficulty"):
         w = w.filter(difficulty=int(request.GET["difficulty"]))
         print(w)
+    w = w.order_by("id")
     return HttpResponse(serializers.serialize("json", w, fields=("id","category","code","difficulty","sensitivity")), content_type="application/json")
 
 def calculateDifficulty(request):
