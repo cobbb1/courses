@@ -7,6 +7,7 @@ from django.core import serializers
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def getSystemSuggestion(request):
     result = Suggestion.objects.all()
     return HttpResponse(serializers.serialize("json", result), content_type="application/json")
@@ -43,6 +44,7 @@ def postSystemSuggestion(request):
     record.save()
     return get_response(200, '{"message":"upload success"}', {})
 
+@csrf_exempt
 def getQuestionSuggestion(request):
 
     questionid = 0

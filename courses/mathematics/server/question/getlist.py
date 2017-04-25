@@ -124,3 +124,29 @@ def getcount(request):
     # the following will result in dict object has not _meta
     # return HttpResponse(serializers.serialize("json", result_list), content_type="application/json")
     return HttpResponse(json.dumps(result_list), content_type="application/json")
+
+def getquestionbychapter(request):
+    question = Question.objects.all()
+    pagenum = 10
+    page = 1
+    if request.GET.has_key('chapter'):
+        chapter = str(request.GET["chapter"])
+        question = question.filter(code__startswith = chapter)
+    else:
+        return get_response(403, '{"message":"no chapter"}', {})
+
+    if request.GET.has_key('category'):
+        category = int(request.GET["category"])
+        question = question.filter(category = category)
+        print(category)
+
+    if request.GET.has_key('pagenum'):
+        pagenum = int(request.GET["pagenum"])
+
+    if request.GET.has_key('page'):
+        page = int(request.GET["page"])
+        start = (page-1) * pagenum # start form page 1
+        end = page * pagenum
+        question = question.order_by("id")[start:end]
+
+    return HttpResponse(serializers.serialize("json", question), content_type="application/json")

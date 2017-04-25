@@ -5,9 +5,10 @@ __author__ = 'Administrator'
 
 from django.conf.urls import url
 from get import get
-from getlist import getlist,calculateDifficulty,getmostdone,getmostdifficulty,getmostuseful,search,getcount
+from getlist import getlist,calculateDifficulty,getmostdone,getmostdifficulty,getmostuseful,search,getcount,getquestionbychapter
 
 urlpatterns = [
+    url(r'^getbychapter', getquestionbychapter),
     url(r'^search', search),
     url(r'^mostdiff', getmostdifficulty), # according to accuracy
     url(r'^mostuseful', getmostuseful),
