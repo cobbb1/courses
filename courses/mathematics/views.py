@@ -68,4 +68,6 @@ def allquestion(request):
     if request.GET.has_key("category"):
         response_data = response_data.filter(category=int(request.GET["category"]))
     print("*********** done selection: " + str(datetime.datetime.now()) + "************")
-    return HttpResponse(serializers.serialize("json", response_data), content_type="application/json")
+    response_data = list(response_data.values())
+    # return HttpResponse(serializers.serialize("json", response_data), content_type="application/json")
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
