@@ -16,9 +16,9 @@ class TokenAuthenticationMiddleware(object):
 
     def __call__(self, request):
 
-        print("*********** before request: "+datetime.datetime.now())
+        print("*********** before request: "+str(datetime.datetime.now()))
         response =  self.get_response(request)
-        print("*********** after request: "+datetime.datetime.now())
+        print("*********** after request: "+str(datetime.datetime.now()))
         return response
 
         # print(request)
