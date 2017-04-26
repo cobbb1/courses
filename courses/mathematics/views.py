@@ -71,13 +71,13 @@ def allquestion(request):
         questionid = item["id"]
         this = response_data.filter(id = questionid)[0]
         print(this)
-        linkneuron = this.linkneuron.values()
+        linkneuron = this.linkneuron.values("id")
         print(linkneuron)
-        rightproblems = this.rightproblems
+        rightproblems = this.rightproblems.values("id")
         print(rightproblems)
-        wrongproblems = this.wrongproblems
+        wrongproblems = this.wrongproblems.values("id")
         print(wrongproblems)
-        twinproblems = this.wrongproblems
+        twinproblems = this.wrongproblems.values("id")
         print(twinproblems)
         result_item={"pk":questionid,"fields":item}
         result_list.append(result_item)
