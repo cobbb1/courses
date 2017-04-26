@@ -70,10 +70,10 @@ def allquestion(request):
     for item in response_data2:
         questionid = item["id"]
         this = response_data.filter(id = questionid)[0]
- 
-        linkneuron = list(this.linkneuron.values("id"))
-        linkneuron = [e["id"] for e in linkneuron]
-        # print(linkneuron)
+
+        linkneuron = list(this.linkneuron.values("title","chapter"))
+        # linkneuron = [e["id"] for e in linkneuron]
+        print(linkneuron)
         rightproblems = this.rightproblems.values("id")
         rightproblems = [e["id"] for e in rightproblems]
         # print(rightproblems)
