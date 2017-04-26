@@ -56,7 +56,7 @@ def getDoneRecord(request):
     if request.GET.has_key('userid') == 0:
         return get_response(403, '{"message":"no userid"}', {})
     else:
-        userid = request.GET["userid"]
+        userid = int(request.GET["userid"])
         test = Users.objects.filter(id = userid)
         if test.count() == 0:
             return get_response(403, '{"message":"no such user"}', {})
