@@ -65,9 +65,9 @@ def allquestion(request):
     response_data = Question.objects.all()
     if request.GET.has_key("category"):
         response_data = response_data.filter(category=int(request.GET["category"]))
-    response_data = list(response_data.values())
+    response_data2 = list(response_data.values())
     result_list = []
-    for item in response_data:
+    for item in response_data2:
         questionid = item["id"]
         this = response_data.filter(id = questionid)[0]
         print(this)
