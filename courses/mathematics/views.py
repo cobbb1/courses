@@ -34,7 +34,7 @@ def get(request,code):
     # response_data['test'] = "# Marked in browser\n\nRendered by **marked**. $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$"
     # response_data= list(Question.objects.filter(code=code).values())
     response_data = Question.objects.filter(code=code)
-    response_data = response_data.values()
+    response_data = list(response_data.values())
     # return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
