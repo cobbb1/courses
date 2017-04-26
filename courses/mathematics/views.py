@@ -73,7 +73,7 @@ def allquestion(request):
 
         linkneuron = list(this.linkneuron.values("title","chapter"))
         # linkneuron = [e["id"] for e in linkneuron]
-        print(linkneuron)
+        #print(linkneuron)
         rightproblems = this.rightproblems.values("id")
         rightproblems = [e["id"] for e in rightproblems]
         # print(rightproblems)
