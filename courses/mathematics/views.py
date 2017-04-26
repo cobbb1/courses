@@ -62,7 +62,7 @@ def preview(request):
     # return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 def allquestion(request):
-    response_data = Question.objects.all()
+    response_data = Question.objects.all().order_by("code")
     if request.GET.has_key("category"):
         response_data = response_data.filter(category=int(request.GET["category"]))
     response_data2 = list(response_data.values())
