@@ -31,20 +31,21 @@ from .models import Question,Neuron
 
 def get(request,code):
     # response_data['test'] = "# Marked in browser\n\nRendered by **marked**. $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$"
-    response_data= list(Question.objects.filter(code=code).values())
-    # return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
+    # response_data= list(Question.objects.filter(code=code).values())
+    response_data = Question.objects.filter(code=code)
+    return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
+    # return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 def getneuron(request):
     print("===================")
     ti = request.GET.get('title')
     print("--------------------")
     print(type(ti))
-    response_data= list(Neuron.objects.filter(title=ti).values())
+    response_data= Neuron.objects.filter(title=ti)
     #print(response_data)
     #print(serializers.serialize("json",response_data))
-    # return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
+    return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
+    # return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
 def preview(request):
@@ -54,17 +55,33 @@ def preview(request):
     print("--------------------")
     print(type(code))
     print(type(typ))
-    response_data= list(Question.objects.filter(code=code,category=typ).values())
+    response_data= Question.objects.filter(code=code,category=typ)
     #print(response_data)
     #print(serializers.serialize("json",response_data))
-    # return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
+    return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
+    # return HttpResponse(json.dumps(response_data), content_type="application/json")
 
-import datetime
 def allquestion(request):
     response_data = Question.objects.all()
     if request.GET.has_key("category"):
         response_data = response_data.filter(category=int(request.GET["category"]))
     response_data = list(response_data.values())
+    result_list = []
+    for item in response_data:
+        questionid = item["id"]
+        this = response_data.filter(id = questionid)[0]
+        print(this)
+        linkneuron = this.linkneuron
+        print(linkneuron)
+        rightproblems = this.rightproblems
+        print(rightproblems)
+        wrongproblems = this.wrongproblems
+        print(wrongproblems)
+        twinproblems = this.wrongproblems
+        print(twinproblems)
+        result_item={"pk":questionid,"fields":item}
+        result_list.append(result_item)
+
     # return HttpResponse(serializers.serialize("json", response_data), content_type="application/json")
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
+    # return HttpResponse(json.dumps(response_data), content_type="application/json")
+    return HttpResponse(json.dumps(result_list), content_type="application/json")
