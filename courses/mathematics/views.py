@@ -71,7 +71,7 @@ def allquestion(request):
         questionid = item["id"]
         this = response_data.filter(id = questionid)[0]
         print(this)
-        linkneuron = this.linkneuron.values("id")
+        linkneuron = this.linkneuron.values("id").values()
         print(linkneuron)
         rightproblems = this.rightproblems.values("id")
         print(rightproblems)
