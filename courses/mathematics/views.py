@@ -34,6 +34,7 @@ def get(request,code):
     # response_data['test'] = "# Marked in browser\n\nRendered by **marked**. $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$"
     # response_data= list(Question.objects.filter(code=code).values())
     response_data = Question.objects.filter(code=code)
+    print(response_data.count())
     print(response_data)
     print(response_data.values())
     response_data = list(response_data.values())
