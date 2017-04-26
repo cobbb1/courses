@@ -73,13 +73,21 @@ def allquestion(request):
         print(this)
         linkneuron = list(this.linkneuron.values("id"))
         linkneuron = [e["id"] for e in linkneuron]
-        print(linkneuron)
+        # print(linkneuron)
         rightproblems = this.rightproblems.values("id")
-        print(rightproblems)
+        rightproblems = [e["id"] for e in rightproblems]
+        # print(rightproblems)
         wrongproblems = this.wrongproblems.values("id")
-        print(wrongproblems)
+        wrongproblems = [e["id"] for e in wrongproblems]
+        # print(wrongproblems)
         twinproblems = this.wrongproblems.values("id")
-        print(twinproblems)
+        twinproblems = [e["id"] for e in twinproblems]   # print(twinproblems)
+
+        item["linkneuron"]=linkneuron
+        item["rightproblems"]=rightproblems
+        item["wrongproblems"]=wrongproblems
+        item["twinproblems"]=twinproblems
+
         result_item={"pk":questionid,"fields":item}
         result_list.append(result_item)
 
