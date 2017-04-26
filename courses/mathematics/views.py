@@ -61,7 +61,9 @@ def preview(request):
     #print(serializers.serialize("json",response_data))
     return HttpResponse(serializers.serialize("json",response_data), content_type="application/json")
 
+import datetime
 def allquestion(request):
+    print("*********** enter get questions: " + str(datetime.datetime.now())+ "************")
     response_data = Question.objects.all()
     if request.GET.has_key("category"):
         response_data = response_data.filter(category=int(request.GET["category"]))
