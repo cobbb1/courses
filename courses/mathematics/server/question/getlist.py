@@ -106,6 +106,7 @@ def getmostdifficulty(request):
     record = {"questionid": lowest_accuracy_id, "accuracy": lowest_accuracy, "total":lowest_accuracy_total, "right":lowest_accuracy_right}
     return HttpResponse(json.dumps(record), content_type="application/json")
 
+from itertools import chain
 def search(request):
     if request.GET.has_key('keyword'):
         resultlist = []
@@ -118,8 +119,11 @@ def search(request):
                 continue
             else:
                 result = Question.objects.filter(keyword__in =Keyword.objects.filter(keyword__icontains=item)).distinct()
-                resultlist.append(result)
-        return HttpResponse(serializers.serialize("json", result), content_type="application/json")
+                resultlist = chain(resultlist,result)
+                print(resultlist)
+        # delete duplicate items
+        resultlist = list(set(resultlist))
+        return HttpResponse(serializers.serialize("json", resultlist), content_type="application/json")
 
 def getcount(request):
     questions = Question.objects.all()
