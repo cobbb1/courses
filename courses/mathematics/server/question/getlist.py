@@ -108,8 +108,17 @@ def getmostdifficulty(request):
 
 def search(request):
     if request.GET.has_key('keyword'):
-        keyword = request.GET["keyword"]
-        result = Question.objects.filter(keyword__in =Keyword.objects.filter(keyword__icontains=keyword)).distinct()
+        resultlist = []
+        keyword = str(request.GET["keyword"])
+        # spilt keywords with space
+        keywords = keyword.split(" ")
+        for item in keywords:
+            item = item.strip() # delete space in both end
+            if item == "":
+                continue
+            else:
+                result = Question.objects.filter(keyword__in =Keyword.objects.filter(keyword__icontains=item)).distinct()
+                resultlist.append(result)
         return HttpResponse(serializers.serialize("json", result), content_type="application/json")
 
 def getcount(request):
