@@ -93,7 +93,10 @@ def allquestion(request):
         codes = str(item["code"]).split(".")
         chaptercode = codes[0]
         subchaptercode = codes[1]
-        problemcode = int(codes[2])
+        problemcode = 0
+        if len(codes) > 2:
+            problemcode = int(codes[2])
+
 
         item["chaptercode"] = int(chaptercode)
         item["subchaptercode"] = int(subchaptercode)

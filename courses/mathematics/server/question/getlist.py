@@ -77,6 +77,7 @@ def getmostdone(request):
         # values change it to dicitonary
         questionitem = Question.objects.filter(id = questionid).values()[0]
         questionitem["question_count"] = count
+
         result_question.append(questionitem)
 
     return HttpResponse(json.dumps(result_question))
