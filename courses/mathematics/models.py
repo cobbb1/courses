@@ -108,7 +108,6 @@ class Action(models.Model):
     content = models.CharField(max_length=100,default="")
     token = models.TextField()
 
-
 class Question(models.Model):
     id = models.AutoField(primary_key=True)
     code = models.CharField(max_length=100)

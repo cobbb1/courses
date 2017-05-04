@@ -82,6 +82,31 @@ def getmostdone(request):
     return HttpResponse(json.dumps(result_question))
     # return HttpResponse(json.dumps(result_list))
 
+from datetime import datetime,timedelta
+def get2weekmostdone(request):
+    starttime = datetime.now() - timedelta(days=14)
+    print("starttime: "+str(starttime))
+    userquestions = UserQuestion.objects.filter(time__gte = starttime) # __gt = >
+    # group by questionid and count number of questions have the same questionid
+    questionfrequency = userquestions.values('questionid').annotate(question_count=Count('questionid'))
+
+    # conver it to list, or will not be serialized
+    result_list = list(questionfrequency.values('questionid', 'question_count'))
+    sorted(result_list, key=lambda temp: temp['question_count'])
+
+    result_question = []
+    # limit 10
+    result_list = result_list[0:10]
+    # combine it with the question data
+    for item in result_list:
+        count = item["question_count"]
+        questionid = item["questionid"]
+        # values change it to dicitonary
+        questionitem = Question.objects.filter(id=questionid).values()[0]
+        questionitem["question_count"] = count
+        result_question.append(questionitem)
+    return HttpResponse(json.dumps(result_question))
+
 def getmostuseful(request):
     return
 

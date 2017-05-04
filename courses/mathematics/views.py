@@ -62,9 +62,11 @@ def preview(request):
     # return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 def allquestion(request):
-    response_data = Question.objects.all().order_by("code")
+    response_data = Question.objects.all()
     if request.GET.has_key("category"):
         response_data = response_data.filter(category=int(request.GET["category"]))
+    if request.GET.has_key("difficulty"):
+        response_data = response_data.filter(difficulty=int(request.GET["difficulty"]))
     response_data2 = list(response_data.values())
     result_list = []
     for item in response_data2:
@@ -88,9 +90,18 @@ def allquestion(request):
         item["wrongproblems"]=wrongproblems
         item["twinproblems"]=twinproblems
 
+        codes = str(item["code"]).split(".")
+        chaptercode = codes[0]
+        subchaptercode = codes[1]
+        problemcode = int(codes[2])
+
+        item["chaptercode"] = int(chaptercode)
+        item["subchaptercode"] = int(subchaptercode)
+        item["problemcode"] = int(problemcode)
         result_item={"pk":questionid,"fields":item}
         result_list.append(result_item)
 
+    result_list = sorted(result_list, key=lambda temp: (temp['fields']['chaptercode'],temp['fields']['subchaptercode'],temp['fields']['problemcode']))
     # return HttpResponse(serializers.serialize("json", response_data), content_type="application/json")
     # return HttpResponse(json.dumps(response_data), content_type="application/json")
     return HttpResponse(json.dumps(result_list), content_type="application/json")
