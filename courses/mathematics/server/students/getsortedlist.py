@@ -70,9 +70,10 @@ def getDoneRecord(request):
             test = userquestion.filter(questionid = questionid)
             result_item = {}
             if test.count() == 0:
-                result_item={"questionid":questionid,"isdone":False}
+                result_item={"questionid":questionid,"isdone":False, "result":""}
             else:
-                result_item = {"questionid": questionid, "isdone": True}
+                result = test[0].correct
+                result_item = {"questionid": questionid, "isdone": True, "result":result}
             result_list.append(result_item)
 
         return  HttpResponse(json.dumps(result_list), content_type="application/json")
