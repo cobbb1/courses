@@ -21,7 +21,7 @@ def get(request,token):
         o.set_cookie("token",token)
         o.set_cookie("id",z[0].pk)
         o.set_cookie("userid",z[0].names)
-        o.__setitem__("Cache-Control",1)
+        o.__setitem__("Cache-Control",3600)
         create(request,o,z[0].pk)
         return o
 
