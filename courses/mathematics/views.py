@@ -9,7 +9,8 @@ def index(request):
     # why the above do not work??????
     return render(request, 'mathematics/testMarkdown.html',None)
 
-
+from django.views.decorators.cache import cache_control
+@cache_control(max_age=3600)
 def indexw(request):
     # mytemplate = loader.get_template('myserver/testMarkdown.html')
     # return HttpResponse(mytemplate)

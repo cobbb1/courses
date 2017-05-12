@@ -220,4 +220,3 @@ class QuestionSuggestion(models.Model):
     time = models.DateTimeField()
     comment = models.TextField()
 
-
