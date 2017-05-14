@@ -212,6 +212,9 @@ class Suggestion(models.Model):
     time = models.DateTimeField()
     comment = models.TextField()
 
+    def __str__(self):
+        return self.comment
+
 class QuestionSuggestion(models.Model):
     id = models.AutoField(primary_key=True)
     userid = models.ForeignKey(Users, on_delete=models.CASCADE)
@@ -219,4 +222,7 @@ class QuestionSuggestion(models.Model):
     questionid = models.ForeignKey("question", on_delete=models.CASCADE)
     time = models.DateTimeField()
     comment = models.TextField()
+
+    def __str__(self):
+        return str(self.questionid) + " "+self.comment
 
