@@ -26,6 +26,7 @@ class UserQuestion(models.Model):
 
     answer = models.CharField(max_length=100)
     right=models.CharField(max_length=100)
+    righte = models.IntegerField()
 
 
 class UserNeuron(models.Model):
@@ -204,6 +205,12 @@ class Useful(models.Model):
     answer = models.IntegerField()
     time = models.DateTimeField()
     right = models.IntegerField()
+
+
+class UserQuestionLikes(models.Model):
+    userid = models.ForeignKey(Users,on_delete=models.CASCADE)
+    questionid = models.ForeignKey(Question,on_delete=models.CASCADE)
+
 
 class Suggestion(models.Model):
     id = models.AutoField(primary_key=True)

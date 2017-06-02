@@ -32,9 +32,9 @@ def atquestion(request,userid,questionid):
     else:
         l = "wrong"
 
-    e = UserQuestion.objects.filter(questionid=questionid,userid=userid)
+    e = UserQuestion.objects.filter(questionid=questionid,userid=userid,righte=0)
     if e.count()==0:
-        z = UserQuestion(questionid=questionid,userid=userid,answer=request.POST["choice"],time=datetime.now(),right=p[0].answer,correct=l)
+        z = UserQuestion(righte=1,questionid=questionid,userid=userid,answer=request.POST["choice"],time=datetime.now(),right=p[0].answer,correct=l)
         z.save()
 
 

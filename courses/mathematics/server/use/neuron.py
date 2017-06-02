@@ -15,11 +15,11 @@ def neuron(userid,questionid):
         m = UserNeuron.objects.filter(neuronid=z.id,userid=userid.id)
         print(m)
         n = z.question_set.all()
-        w = UserQuestion.objects.filter(questionid__linkneuron__id=z.id,userid=userid.id,correct="wrong")
+        w = UserQuestion.objects.filter(questionid__linkneuron__id=z.id,userid=userid.id,correct="wrong",righte=1)
         l = 0
         for i in w:
             l = l + 1/float(i.questionid.linkneuron.count())
-        o = UserQuestion.objects.filter(questionid__linkneuron__id=z.id,userid=userid.id,correct="right").aggregate(w=Count("questionid"))
+        o = UserQuestion.objects.filter(questionid__linkneuron__id=z.id,userid=userid.id,correct="right",righte=1).aggregate(w=Count("questionid"))
         print(o["w"])
         print(l)
         l = float(o["w"]-l)/n.count()

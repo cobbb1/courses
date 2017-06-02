@@ -10,5 +10,5 @@ from mathematics.models import UserQuestion
 
 
 def getquestion(request,userid):
-    e = UserQuestion.objects.filter(userid=userid)
+    e = UserQuestion.objects.filter(righte=1,userid=userid)
     return get_response(200,serialize("json",e),{})

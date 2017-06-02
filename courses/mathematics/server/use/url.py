@@ -10,6 +10,9 @@ from atquestion import atquestion
 from mathematics.server.action.getuseraction import getuseraction
 from usefulquestion import usefulquestions
 from preferquestion import preferquestions
+from wez import wez
+from questionlikes import questionlikes
+from getquestionlikes import getquestionlikes
 from hardnessquestion import hardnequestions
 
 urlpatterns = [
@@ -18,7 +21,11 @@ urlpatterns = [
     url(r'^(?P<userid>.+?)/questions/(?P<questionid>.+?)/hardness',hardnequestions),
     url(r'^(?P<user_id>.+?)/neurons/(?P<chapter_id>.+)' , getNeuron),
     url(r'^(?P<userid>.+?)/questions/(?P<questionid>.+?)/useful',usefulquestions),
+    url(r'^(?P<userid>.+?)/questionslikes/(?P<questionid>.+)',questionlikes),
+    url(r'^(?P<userid>.+?)/questionslikes/' , getquestionlikes),
+
     url(r'^(?P<userid>.+?)/questions/(?P<questionid>.+)' , atquestion),
+    url(r'^(?P<userid>.+?)/setquestion' , wez),
     url(r'^(?P<userid>.+?)/questions/' , getquestion),
 
 

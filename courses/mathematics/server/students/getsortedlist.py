@@ -9,8 +9,8 @@ import json
 def getSortedStudentList(request):
 
     questions_in_one_chapter = Question.objects.all()
-    questions_in_one_chapter_of_all_student = UserQuestion.objects.all()
-    questions_in_one_chapter_of_one_student = UserQuestion.objects.all()
+    questions_in_one_chapter_of_all_student = UserQuestion.objects.filter(righte=1)
+    questions_in_one_chapter_of_one_student = UserQuestion.objects.filter(righte=1)
     all_students = Users.objects.only("id","names")
     if request.GET.has_key('chapter'):
         # get all the question ids in one or some chapter, since the chapter id is char field
@@ -18,7 +18,7 @@ def getSortedStudentList(request):
         print(questions_in_one_chapter)
 
         # get all the question feedbacks in these chapters
-        questions_in_one_chapter_of_all_student = UserQuestion.objects.filter(questionid__in = questions_in_one_chapter)
+        questions_in_one_chapter_of_all_student = UserQuestion.objects.filter(righte=1,questionid__in = questions_in_one_chapter)
         print(questions_in_one_chapter_of_all_student)
 
         result = []
@@ -61,7 +61,7 @@ def getDoneRecord(request):
         if test.count() == 0:
             return get_response(403, '{"message":"no such user"}', {})
 
-        userquestion = UserQuestion.objects.filter(userid = userid)
+        userquestion = UserQuestion.objects.filter(righte=1,userid = userid)
         questions = Question.objects.all()
         result_list = []
         for question in questions:
