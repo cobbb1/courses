@@ -21,4 +21,5 @@ def questionlikes(request,userid,questionid):
         i.save()
         return get_response(200,"okl",{})
     else:
+        p.delete()
         return get_response(200,"w",{})
