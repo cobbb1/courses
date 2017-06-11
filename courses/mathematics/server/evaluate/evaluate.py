@@ -11,8 +11,8 @@ from django.http import HttpResponse
 import json
 
 def evaluate(request,userid):
-    z = UserQuestion.objects.filter(userid=userid,correct="wrong")
-    w = UserQuestion.objects.filter(userid=userid,correct="right")
+    z = UserQuestion.objects.filter(righte=1,userid=userid,correct="wrong")
+    w = UserQuestion.objects.filter(righte=1,userid=userid,correct="right")
     m1=0
     m2=0
     m3=0
